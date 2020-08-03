@@ -33,7 +33,7 @@ end;
 
 class function TModelPessoaFactory.NewPessoaFactory: iPessoaFactory;
 begin
-
+  Result := self.Create;
 end;
 
 function TModelPessoaFactory.PessoaFisica: iPessoa;
