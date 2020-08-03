@@ -13,8 +13,9 @@ type
     editSobreNome: TEdit;
     btnUnir: TButton;
     memoNomeSobreNome: TMemo;
+    cmbTipoPessoa: TComboBox;
     procedure btnUnirClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
+    procedure cmbTipoPessoaChange(Sender: TObject);
   private
     { Private declarations }
     FPessoa : iPessoa;
@@ -28,7 +29,7 @@ var
 implementation
 
 uses
-  eInterface.Model.Pessoa.Factory;
+  eInterface.Controller.Pessoa,eInterface.Controller.Interfaces;
 
 {$R *.dfm}
 
@@ -42,11 +43,12 @@ begin
   );
 end;
 
-procedure TfrmPrincipal.FormCreate(Sender: TObject);
+procedure TfrmPrincipal.cmbTipoPessoaChange(Sender: TObject);
 begin
-  FPessoa := TModelPessoaFactory
-                .NewPessoaFactory
-                .PessoaFisica;
+  case cmbTipoPessoa.ItemIndex of
+    0:  FPessoa := TControllerPessoa.newPessoa.Pessoa(tpFisica);
+    1:  FPessoa := TControllerPessoa.newPessoa.Pessoa(tpJuridica);
+  end;
 end;
 
 end.

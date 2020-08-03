@@ -11,7 +11,6 @@ object frmPrincipal: TfrmPrincipal
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object editNome: TEdit
@@ -43,5 +42,16 @@ object frmPrincipal: TfrmPrincipal
     Width = 345
     Height = 89
     TabOrder = 3
+  end
+  object cmbTipoPessoa: TComboBox
+    Left = 64
+    Top = 34
+    Width = 145
+    Height = 21
+    TabOrder = 4
+    OnChange = cmbTipoPessoaChange
+    Items.Strings = (
+      'F'#237'sica'
+      'Jur'#237'dica')
   end
 end
