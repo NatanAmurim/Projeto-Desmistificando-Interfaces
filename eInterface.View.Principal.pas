@@ -16,9 +16,11 @@ type
     cmbTipoPessoa: TComboBox;
     procedure btnUnirClick(Sender: TObject);
     procedure cmbTipoPessoaChange(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     FPessoa : iPessoa;
+    procedure ExibiResultado(Value : String);
   public
     { Public declarations }
   end;
@@ -34,13 +36,15 @@ uses
 {$R *.dfm}
 
 procedure TfrmPrincipal.btnUnirClick(Sender: TObject);
+var
+  l : String;
 begin
-  memoNomeSobreNome.Lines.Add(
-    FPessoa
+   FPessoa
       .Nome(editNome.Text)
       .SobreNome(editSobreNome.Text)
-      .NomeCompleto
-  );
+      .Display(ExibiResultado)
+      .NomeCompleto;
+
 end;
 
 procedure TfrmPrincipal.cmbTipoPessoaChange(Sender: TObject);
@@ -49,6 +53,16 @@ begin
     0:  FPessoa := TControllerPessoa.newPessoa.Pessoa(tpFisica);
     1:  FPessoa := TControllerPessoa.newPessoa.Pessoa(tpJuridica);
   end;
+end;
+
+procedure TfrmPrincipal.ExibiResultado(Value: String);
+begin
+  memoNomeSobreNome.Lines.Add(Value);
+end;
+
+procedure TfrmPrincipal.FormCreate(Sender: TObject);
+begin
+  ReportMemoryLeaksOnShutdown := True;
 end;
 
 end.

@@ -3,11 +3,15 @@ unit eInterface.Model.Interfaces;
 interface
 
 type
+  TEvDisplay = procedure(Value : String) of Object;
+
   iPessoa = interface
     ['{566DC842-88A7-457B-ADBF-5A112F6F5021}']
-    function Nome (Value : String) : iPessoa;
+    function Nome (Value : String) : iPessoa; overload;
+    function Nome : String; overload;
     function SobreNome (Value : String) : iPessoa;
-    function NomeCompleto : String;
+    function NomeCompleto : iPessoa;
+    function Display (Value : TEvDisplay) : iPessoa;
     end;
 
   iPessoaFactory = interface
